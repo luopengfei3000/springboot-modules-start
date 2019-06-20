@@ -23,9 +23,10 @@
         <module>springboot-jsp</module>
         <module>springboot-angular</module>
         <module>springboot-timing</module>
-        <module>springboot-dubbo-api</module>
+        <module>springboot-mycat</module>
+        <!--<module>springboot-dubbo-api</module>
         <module>springboot-dubbo-consumer</module>
-        <module>springboot-dubbo-provider</module>
+        <module>springboot-dubbo-provider</module>-->
     </modules>
 
     <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
