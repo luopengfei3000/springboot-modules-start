@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootjsp.mapper.ConfigInfoMapper">
+<!-- 如果yml中配置了：type-aliases-package: com.example.springbootjsp.entity
+	com.example.springbootjsp.entity.ConfigInfo 可以写成为 ConfigInfo或者configInfo 均无错误
+	只是提示红色，还是com.example.springbootjsp.entity.ConfigInfo全路径比较方便
+   -->
+<resultMap id="ConfigInfoMap" type="com.example.springbootjsp.entity.ConfigInfo">
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="configCode" column="CONFIG_CODE" jdbcType="VARCHAR" />
+		<result property="configName" column="CONFIG_NAME" jdbcType="VARCHAR" />
+		<result property="validFlag" column="VALID_FLAG" jdbcType="VARCHAR" />
+		<result property="note" column="NOTE" jdbcType="VARCHAR" />
+
+		<!-- 虚拟字段-->
+		<result property="configCount" column="CONFIG_COUNT" jdbcType="DECIMAL" />
+</resultMap>
+<!-- 分页查询 config_info-->
+<select id="searchConfigInfoByPage" parameterType="java.util.Map" resultMap="ConfigInfoMap">
+	select
+		t1.id                             ,
+		t1.config_code                    ,
+		t1.config_name                    ,
+		t1.valid_flag                     ,
+		t1.note
+	from config_info t1
+</select>
+<select id="searchConfigInfoData4Chart" parameterType="java.util.Map" resultMap="ConfigInfoMap">
+	select
+		distinct t1.config_name,
+		(select count(1) from config_l_info t2 where t2.config_id = t1.id) as config_count
+	from config_info t1
+</select>
+<!-- 查询列表 config_info-->
+<select id="searchConfigInfo" parameterType="java.util.Map" resultMap="ConfigInfoMap">
+	select
+		t1.id                             ,
+		t1.config_code                    ,
+		t1.config_name                    ,
+		t1.valid_flag                     ,
+		t1.note
+	from config_info t1
+		<where>
+			<if test="id != null and id != ''">
+				and t1.ID =#{id}
+			</if>
+			<if test="configCode != null and configCode != ''">
+				and t1.CONFIG_CODE like '%'||#{bean.configCode}||'%'
+			</if>
+			<if test="configName != null and configName != ''">
+				and t1.CONFIG_NAME like '%'||#{bean.configName}||'%'
+			</if>
+			<if test="validFlag != null and validFlag != ''">
+				and t1.VALID_FLAG =#{validFlag}
+			</if>
+			<if test="note != null and note != ''">
+				and t1.NOTE like '%'||#{bean.note}||'%'
+			</if>
+		</where>
+</select>
+<!-- 主键查询对象 config_info-->
+<select id="queryConfigInfoByPrimaryKey" parameterType="java.util.Map" resultMap="ConfigInfoMap">
+	select
+		t1.id                             ,
+		t1.config_code                    ,
+		t1.config_name                    ,
+		t1.valid_flag                     ,
+		t1.note
+	from config_info t1
+		where t1.id = #{id}
+</select>
+<!-- 新增对象 config_info-->
+<insert id="insertConfigInfo" parameterType="com.example.springbootjsp.entity.ConfigInfo">
+	insert into config_info
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="configCode != null">
+				config_code,
+			</if>
+			<if test="configName != null">
+				config_name,
+			</if>
+			<if test="validFlag != null">
+				valid_flag,
+			</if>
+			<if test="note != null">
+				note,
+			</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="configCode != null">
+				#{configCode,jdbcType=VARCHAR},
+			</if>
+			<if test="configName != null">
+				#{configName,jdbcType=VARCHAR},
+			</if>
+			<if test="validFlag != null">
+				#{validFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+	</trim>
+</insert>
+<!-- 更新对象 config_info-->
+<update id="updateConfigInfoSensitive" parameterType="com.example.springbootjsp.entity.ConfigInfo">
+	update config_info t1
+	<set>
+			<if test="id != null">
+				t1.id                             =#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="configCode != null">
+				t1.config_code                    =#{configCode,jdbcType=VARCHAR},
+			</if>
+			<if test="configName != null">
+				t1.config_name                    =#{configName,jdbcType=VARCHAR},
+			</if>
+			<if test="validFlag != null">
+				t1.valid_flag                     =#{validFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				t1.note                           =#{note,jdbcType=VARCHAR},
+			</if>
+	</set>
+		where t1.id = #{id}
+</update>
+<!-- 主键删除 config_info-->
+<delete id="deleteConfigInfoById" parameterType="java.lang.String">
+	delete from config_info  where  id = #{id}
+</delete>
+<!-- 配置编码验证 config_info -->
+<select id="selectConfigInfoCountByCode" parameterType="java.lang.String" resultType="int">
+	select count(*) from config_info t1 
+	where t1.config_code=#{configCode}
+</select>
+</mapper>

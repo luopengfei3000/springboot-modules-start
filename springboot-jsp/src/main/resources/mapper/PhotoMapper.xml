@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootjsp.mapper.PhotoMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.springbootjsp.entity.Photo">
+    <result property="id" column="ID" jdbcType="VARCHAR" />
+    <result property="userId" column="USER_ID" jdbcType="VARCHAR" />
+    <result property="name" column="NAME" jdbcType="VARCHAR" />
+    <result property="photo" column="PHOTO" jdbcType="BLOB" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, user_id, name, photo
+  </sql>
+
+  <select id="selectPhotoinfoByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from photo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectPhotoinfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from photo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertPhotoinfo" parameterType="com.example.springbootjsp.entity.Photo">
+    insert into photo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springbootjsp.entity.Photo">
+    update photo
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=BLOB},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

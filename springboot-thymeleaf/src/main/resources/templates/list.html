@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<!-- 第二种写法 -->
+<!--<head th:include="common/headercommon::head(~{::title},~{::link},~{::script})">
+    <title>title</title>
+    <link th:href="@{/css/test1.css}" rel="stylesheet">
+</head>-->
+<!-- 第三种写法-->
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="用户信息">User</title>
+    <!--默认拼接前缀路径,开头请勿再添加斜杠,防止部署运行报错！-->
+    <script th:replace="common/headercommon2::static"></script>
+    <link th:href="@{/css/test1.css}" rel="stylesheet">
+    <script th:src="@{/js/test.js}"></script>
+</head>
+<script>
+    $(function(){
+        aa();
+    });
+</script>
+<body>
+<!--<div th:replace="fragments/header :: header">...</div>-->
+<h3 th:text="${userModel.title}">Welcome to springboot</h3>
+<div>
+    <!--<a href="/users/form.html" th:href="@{/users/form}">创建用户</a>-->
+    <a th:href="@{/add}" >创建用户</a>
+</div>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Age</td>
+        <td>Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${userModel.userList.size()} eq 0">
+        <td colspan="3">没有用户信息！！</td>
+    </tr>
+    <tr th:each="person : ${userModel.userList}">
+        <td class="test1" th:text="${person.getId()}">1</td>
+        <td th:text="${person.getAge()}">11</td>
+        <td>
+            <a href="view.html" th:href="@{'/users/' + ${person.id}}"
+               th:text="${person.getName()}">wss</a></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<!--<div th:replace="~{fragments/footer :: footer}">...</div>-->
+<!--使用公有js-->
+<!--<div th:replace="common/htmlJS::common_js(~{::script})">
+    &lt;!&ndash;每个页面自己的js&ndash;&gt;
+</div>-->
+</body>
+</html>

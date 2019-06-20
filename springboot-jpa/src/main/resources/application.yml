@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboottest
+    username: root
+    password: DES@CjaGvkg3YjM=
+  jpa:
+    hibernate:
+      #ddl-auto: create 如果库中表存在，则删除后再新建，表中有数据存在安全问题
+      ddl-auto: update
+    show-sql: true

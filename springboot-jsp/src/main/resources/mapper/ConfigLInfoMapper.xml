@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootjsp.mapper.ConfigLInfoMapper">
+
+<resultMap id="ConfigLInfoMap" type="com.example.springbootjsp.entity.ConfigLInfo">
+	<result property="id" column="ID" jdbcType="VARCHAR" />
+	<result property="configId" column="CONFIG_ID" jdbcType="VARCHAR" />
+	<result property="innerOrder" column="INNER_ORDER" jdbcType="DECIMAL" />
+	<result property="detailName" column="DETAIL_NAME" jdbcType="VARCHAR" />
+	<result property="detailValue" column="DETAIL_VALUE" jdbcType="VARCHAR" />
+	<result property="validFlag" column="VALID_FLAG" jdbcType="VARCHAR" />
+	<!-- 虚拟字段 -->
+	<result property="configCode" column="CONFIG_CODE" jdbcType="VARCHAR" />
+</resultMap>
+<!-- 分页查询 config_l_info -->
+<select id="searchConfigLInfoByPage" parameterType="java.util.Map" resultMap="ConfigLInfoMap">
+	select
+	t1.id                             ,
+	t1.config_id                  ,
+	t1.inner_order                    ,
+	t1.detail_name                    ,
+	t1.detail_value                   ,
+	t1.valid_flag
+	from config_l_info 	t1
+</select>
+<!-- 查询列表 config_l_info -->
+<select id="searchConfigLInfo" parameterType="java.util.Map" resultMap="ConfigLInfoMap">
+	select
+	t1.id                             ,
+	t1.config_id                  ,
+	t1.inner_order                    ,
+	t1.detail_name                    ,
+	t1.detail_value                   ,
+	t1.valid_flag
+	from config_l_info 	t1
+	<where>
+		<if test="id != null and id != ''">
+			and t1.ID =#{id}
+		</if>
+		<if test="configId != null and configId != ''">
+			and t1.CONFIG_ID =#{configId}
+		</if>
+		<if test="innerOrder != null and innerOrder != ''">
+			and t1.INNER_ORDER =#{innerOrder}
+		</if>
+		<if test="detailName != null and detailName != ''">
+			and t1.DETAIL_NAME =#{detailName}
+		</if>
+		<if test="detailValue != null and detailValue != ''">
+			and t1.DETAIL_VALUE =#{detailValue}
+		</if>
+		<if test="validFlag != null and validFlag != ''">
+			and t1.VALID_FLAG =#{validFlag}
+		</if>
+	</where>
+</select>
+<!-- 主键查询对象 config_l_info -->
+<select id="queryConfigLInfoByPrimaryKey" parameterType="java.util.Map" resultMap="ConfigLInfoMap">
+	select
+		t1.id                             ,
+		t1.config_id                  ,
+		t1.inner_order                    ,
+		t1.detail_name                    ,
+		t1.detail_value                   ,
+		t1.valid_flag
+	from config_l_info 	t1
+		where t1.id = #{id}
+</select>
+<!-- 新增对象 config_l_info -->
+<insert id="insertConfigLInfo" parameterType="com.example.springbootjsp.entity.ConfigLInfo">
+	insert into config_l_info
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="id != null">
+			id,
+		</if>
+		<if test="configId != null">
+			config_id,
+		</if>
+		<if test="innerOrder != null">
+			inner_order,
+		</if>
+		<if test="detailName != null">
+			detail_name,
+		</if>
+		<if test="detailValue != null">
+			detail_value,
+		</if>
+		<if test="validFlag != null">
+			valid_flag,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="id != null">
+			#{id,jdbcType=VARCHAR},
+		</if>
+		<if test="configId != null">
+			#{configId,jdbcType=VARCHAR},
+		</if>
+		<if test="innerOrder != null">
+			#{innerOrder,jdbcType=DECIMAL},
+		</if>
+		<if test="detailName != null">
+			#{detailName,jdbcType=VARCHAR},
+		</if>
+		<if test="detailValue != null">
+			#{detailValue,jdbcType=VARCHAR},
+		</if>
+		<if test="validFlag != null">
+			#{validFlag,jdbcType=VARCHAR},
+		</if>
+	</trim>
+</insert>
+<!-- 更新对象 config_l_info -->
+<update id="updateConfigLInfoSensitive" parameterType="com.example.springbootjsp.entity.ConfigLInfo">
+	update config_l_info t1
+	<set>
+		<if test="id != null">
+			t1.id                             =#{id,jdbcType=VARCHAR},
+		</if>
+		<if test="configId != null">
+			t1.config_id                  =#{configId,jdbcType=VARCHAR},
+		</if>
+		<if test="innerOrder != null">
+			t1.inner_order                    =#{innerOrder,jdbcType=DECIMAL},
+		</if>
+		<if test="detailName != null">
+			t1.detail_name                    =#{detailName,jdbcType=VARCHAR},
+		</if>
+		<if test="detailValue != null">
+			t1.detail_value                   =#{detailValue,jdbcType=VARCHAR},
+		</if>
+		<if test="validFlag != null">
+			t1.valid_flag                     =#{validFlag,jdbcType=VARCHAR},
+		</if>
+	</set>
+	where t1.id = #{id} and t1.version =#{version}
+</update>
+<!-- 主键删除 config_l_info -->
+<delete id="deleteConfigLInfoById" parameterType="java.lang.String">
+	delete from config_l_info  where  id = #{id}
+</delete>
+
+<select id="findConfigLInfoByConfigCode" parameterType="string" resultMap="ConfigLInfoMap">
+    select
+        t1.id,
+        t1.detail_value,
+        t1.detail_name
+     from config_l_info t1
+     inner join config_info t2 on t2.id = t1.config_id
+     where t1.valid_flag = '1'
+       and t2.valid_flag = '1'
+       and t2.CONFIG_CODE = #{configCode}
+     order by t1.inner_order
+</select>
+</mapper>

@@ -1,0 +1,13 @@
+# 项目相关配置
+fuce:
+  #名称
+  name: luopf
+  #版本
+  version: 1.0
+  #版权年份
+  copyrightYear: 2019
+
+#停用banner
+#spring:
+    #main:
+        #banner-mode: "off"

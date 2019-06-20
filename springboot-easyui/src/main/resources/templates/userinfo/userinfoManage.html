@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="管理页面">管理页面</title>
+    <!--默认拼接前缀路径,开头请勿再添加斜杠,防止部署运行报错！-->
+    <script th:replace="common/header::static"></script>
+    <script type="text/javascript" src="/userinfo/userinfo.js"></script>
+</head>
+<script th:inline="javascript">
+    var userinfo;
+    $(function () {
+        userinfo = new Userinfo('dgUserinfo', [[${url}]], 'searchDialog', 'userinfo');
+        userinfo.init();
+    });
+</script>
+<style>
+    .datagrid-btable{
+        width:100%;
+    }
+    .datagrid-header-inner{
+        width:100%;
+    }
+    .datagrid-header{
+        width:100%;
+    }
+    .datagrid-htable{
+        width:100%;
+    }
+    .datagrid-cell{margin:auto;}
+    .fitem{text-align:center}
+    .ftitle{text-align:center}
+</style>
+
+<body>
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" style="width: 100%;height: 9%">
+
+    </div>
+    <div data-options="region:'center',title:'用户列表'">
+        <div id="toolbarUserinfo" class="datagrid-toolbar">
+            <table>
+                <tr>
+                    <td><a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="userinfo.insert()">添加用户</a></td>
+                    <td><a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="userinfo.del()">删除用户</a></td>
+                    <td><a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="userinfo.modify()">修改信息</a></td>
+                </tr>
+            </table>
+        </div>
+        <table id="dgUserinfo" class="easyui-datagrid" style="width:100%;height:100%"
+               data-options="
+                    fit: true,
+                    border: false,
+                    rownumbers: true,
+                    animate: true,
+                    collapsible: false,
+                    fitColumns: true,
+                    autoRowHeight: false,
+                    idField :'userId',
+                    toolbar:'#toolbarUserinfo',
+                    singleSelect: true,
+                    checkOnSelect: true,
+                    selectOnCheck: false,
+                    pagination:true,
+                    pageSize:dataOptions.pageSize,
+                    pageList:dataOptions.pageList,
+                    striped:true">
+            <thead>
+                <tr>
+                    <th data-options="field:'userId', halign:'center',checkbox:true" width="220">表主键ID</th>
+                    <th data-options="field:'userName',align:'center',width:'9%'">姓名</th>
+                    <th data-options="field:'password',align:'center',width:'9%'">密码</th>
+                    <th data-options="field:'phone',align:'center',width:'11%'">电话</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>

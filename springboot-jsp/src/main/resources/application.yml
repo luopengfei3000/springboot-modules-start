@@ -1,0 +1,74 @@
+# 项目相关配置
+power:
+  #名称
+  name: power
+  #版本
+  version: 1.0
+  #版权年份
+  copyrightYear: 2019
+  #头像上传路径
+  profile: D:/profile/
+
+#开发环境配置
+server:
+  port: 8081
+
+spring:
+    mvc:
+        view:
+          prefix: /WEB-INF/jsp/
+          suffix: .jsp
+    #修改默认静态文件加载地址
+    resources:
+      static-locations: classpath:/WEB-INF/tags,classpath:/static/
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/test
+        username: root
+        password: cape
+        # druid配置项，默认spring-boot不支持，故需要config类来解析
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#    cache:
+#        type: redis
+#        redis:
+#            # server host
+#           host: 127.0.0.1
+#            lettuce:
+#                pool:
+#                    max-active: 8
+#                    max-idle: 8
+#                    max-wait: -1ms
+#                    min-idle: 0
+#                shutdown-timeout: 100ms
+#            #password: 123456
+#            port: 6379
+mybatis:
+  #默认配置查询的时候对 返回为map 类型的数据，如果数据为空，查询出来的数据就不显示，有时候我们需要这些为空的数据，对其进行判断。
+  configuration:
+    call-setters-on-nulls: true
+    #在控制台输出sql返回数据。
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+  #实体类包路径，该路径下的实体类在Mapper文件中可直接使用类名，不需要再写完整的类路径。
+  type-aliases-package: com.example.springbootjsp.entity
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

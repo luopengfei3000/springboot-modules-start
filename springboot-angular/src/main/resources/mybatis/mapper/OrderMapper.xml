@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper接口代理实现编写规则：
+    1.映射文件中namespace要等于接口的全路径
+    2.映射文件中sql语句的id要等于接口的方法名
+    3.映射文件中传入参数类型要等于接口方法的入参
+    4.映射文件返回值类型要等于接方法的返回值类型
+     -->
+<mapper namespace="com.example.springbootangular.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.springbootangular.dto.Order">
+        <id column="order_id" property="id" jdbcType="VARCHAR"/>
+        <result column="order_no" property="no" jdbcType="VARCHAR"/>
+        <result column="order_date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,order_no,order_date,quantity
+    </sql>
+
+    <select id="searchOrderByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_order
+        <where>
+            <if test="bean != null">
+                <if test="bean.id != null and bean.id != ''">
+                    and order_id = #{bean.id}
+                </if>
+                <if test="bean.no != null and bean.no != ''">
+                    and order_no = #{bean.no}
+                </if>
+                <if test="bean.quantity != null and bean.quantity != ''">
+                    and quantity = #{bean.quantity}
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="findOrderById" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_order
+        WHERE order_id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_order
+    </select>
+
+    <insert id="addOrder" parameterType="com.example.springbootangular.dto.Order">
+        insert into t_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                order_id,
+            </if>
+            <if test="no != null">
+                order_no,
+            </if>
+            <if test="date != null">
+                order_date,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="no != null">
+                #{no,jdbcType=VARCHAR},
+            </if>
+            <if test="date != null">
+                #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateOrder" parameterType="com.example.springbootangular.dto.Order">
+        UPDATE
+        t_order
+        SET
+        order_no = #{order.no},
+        order_date = #{order.date},
+        quantity = #{order.quantity}
+        WHERE
+        order_id = #{order.id}
+    </update>
+
+    <delete id="deleteOrder" parameterType="java.util.Map">
+        DELETE
+        FROM
+        t_order
+        WHERE
+        order_id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>用户管理系统</title>
+    <link href="/css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-1.10.1.js"></script>
+</head>
+<script>
+    //信息保存按钮事件
+    function login(){
+            $("#message").html("正在登录.......");
+            var id=$("#userName").val();
+            var password=$("#password").val();
+            var validateCode = $("#validateCode").val();
+            if(!id){
+                $("#message").html("用户名不能为空！");
+                return false;
+            }
+            else if(!password){
+                $("#message").html("密码不能为空！");
+                return false;
+            }else{
+                $("#loginFrom").submit();
+            }
+        }
+
+        $(function(){
+            $('.imgcode').click(function() {
+                var captchaType = 'math';
+                var url = "/captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
+                $(".imgcode").attr("src", url);
+            });
+        });
+
+</script>
+<style>
+.message1{color:red}
+</style>
+<body>
+<div class="second_body">
+    <form  id="loginFrom" action="userLogin" method="post">
+        <div class="logo"></div>
+        <div class="title-zh">用户管理系统</div>
+        <div class="title-en" style="">Enterprise Information Manage System</div>
+        <div class="message" data-bind="html:message"></div>
+        <table border="0" style="width:300px;">
+            <tr>
+                <td style="white-space:nowrap; padding-bottom: 5px;width:55px;">用户名：</td>
+                <td colspan="2"><input type="text"  name="userName" id="userName" class="login" data-bind="value:form.userName" /></td>
+            </tr>
+            <tr>
+                <td class="lable" style="white-space:nowrap; letter-spacing: 0.5em; vertical-align: middle">密码：</td>
+                <td colspan="2"><input type="password"  name="password" id="password" class="login" data-bind="value:form.password" /></td>
+            </tr>
+            <tr>
+                <td class="lable" style="white-space:nowrap; letter-spacing: 0.5em; vertical-align: middle">
+                    <input type="text" style="width: 70px" name="validateCode" id="validateCode" placeholder="验证码" maxlength="5">
+                </td>
+                <td colspan="2">
+                    <a href="javascript:void(0);" title="点击更换验证码">
+                        <img src="/captcha/captchaImage?type=math" class="imgcode" width="98%"/>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center;height:27px">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center">
+                    <input type="button" value="登录" class="login_button"  onclick="login()" />
+                    <input type="button" value="重置" class="reset_botton"  onclick="reset()" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" style="text-align:center">
+                    <span  class="message1" id="message" th:text="${MSG}"></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

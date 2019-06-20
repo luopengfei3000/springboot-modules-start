@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+</head>
+<body>
+<!--<div th:replace="fragments/header :: header">...</div>-->
+<h3 th:text="${userModel.title}">Welcome to springboot</h3>
+<form action="/insert" th:action="@{/save}" method="post" >
+    <input type="hidden" name="id">
+    名称：<br>
+    <input type="text" name="name">
+    <br>
+    年龄：<br>
+    <input type="text" name="age">
+    <input type="submit" value="提交">
+</form>
+
+
+
+<!--<div th:replace="~{fragments/footer :: footer}">...</div>-->
+
+</body>
+</html>

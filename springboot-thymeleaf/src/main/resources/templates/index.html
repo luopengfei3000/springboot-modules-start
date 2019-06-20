@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/easyui/themes/default/easyui.css}" href="../static/easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/easyui/themes/icon.css}" href="../static/easyui/themes/icon.css" />
+    <script type="text/javascript" th:src="@{/easyui/jquery.min.js}" src="../static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/easyui/locale/easyui-lang-zh_CN.js}" src="../static/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+
+    <div style="color:red;" th:text="${helloModel.xname}"></div>
+
+<script th:inline="javascript">
+    $(function(){
+       /* $.ajax({
+            url:"/thymeleaf/ajax",
+            data:{
+                username:"xxx"
+            },
+            type:"get",
+            dataType:"text",
+            success:function(text){
+                alert(text);
+                $("#usernamediv").text(text);
+            }
+        });*/
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootjsp.mapper.UserMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.springbootjsp.entity.User">
+    <result property="userId" column="USER_ID" jdbcType="VARCHAR" />
+    <result property="userName" column="USER_NAME" jdbcType="VARCHAR" />
+    <result property="password" column="PASSWORD" jdbcType="VARCHAR" />
+    <result property="phone" column="PHONE" jdbcType="VARCHAR" />
+    <result property="photo" column="PHOTO" jdbcType="BLOB" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    user_id, user_name, password, phone
+  </sql>
+
+  <select id="searchUserinfoByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+  </select>
+
+  <select id="selectUserinfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUserinfoUnionPhotoByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+      u.user_id,
+      u.user_name,
+      u.password,
+      u.phone,
+      p.photo
+    from t_user u
+    inner join photo p
+    on u.user_id = p.user_id
+    where u.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectselectByKeyAndPassword" parameterType="com.example.springbootjsp.entity.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_name = #{userName} and  password = #{password}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertUserinfo" parameterType="com.example.springbootjsp.entity.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springbootjsp.entity.User">
+    update t_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springbootjsp.entity.User">
+    update t_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

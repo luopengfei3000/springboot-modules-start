@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<div th:fragment="common_header(title,links)">
+
+    <title th:replace="${title}">The awesome application</title>
+
+    <link th:href="@{/css/test.css}" rel="stylesheet">
+    <link th:href="@{/css/test2.css}" rel="stylesheet">
+
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" />
+</div>
+</html>

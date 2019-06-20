@@ -1,0 +1,387 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	font-family: '微软雅黑';
+}
+
+body {
+	background: #19253b;
+}
+
+.production div {
+	width: 100%;
+	background: #15344b;
+	/* 	border-radius: 6px; */
+	text-align: center;
+}
+
+.production table,.oee-instrument table {
+	width: 100%;
+	border-spacing: 20px;
+}
+
+.production table td,.oee-instrument table td {
+	background: #15344b;
+	padding: 30px 0;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.oee-trend {
+	margin: 0 20px;
+}
+
+.oee-trend table {
+	width: 100%;
+}
+
+.oee-trend table td {
+	height: 340px;
+	background: #15344b;
+	border-radius: 6px;
+	text-align: center;
+	color: #fff;
+}
+
+.production-list {
+	margin: 0 20px;
+	background: #15344b;
+	border-radius: 6px;
+	overflow: auto;
+}
+
+.subproduction-list {
+	margin: 0 20px;
+	padding: 10px 0;
+	overflow: auto;
+}
+
+.production-list p {
+	font-size: 18px;
+	color: #f1faff;
+	line-height: 40px;
+}
+
+.production-list table {
+	width: 100%;
+	border: solid 1px #1f4e70;
+	box-sizing: border-box;
+	border-collapse: collapse;
+}
+
+.production-list table tr th {
+	color: #fff;
+	background: #1f4e70;
+	height: 42px;
+	box-sizing: border-box;
+	border-right: solid 1px #19253b;
+}
+
+.production-list table tr td {
+	color: #fff;
+	height: 40px;
+	text-align: center;
+	border-right: solid 1px #1f4e70;
+}
+
+.production-list table .line {
+	background: #183c56;
+}
+
+.pro-f1 {
+	width: 100px;
+}
+
+.pagination-bar {
+	padding: 6px 0px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.pagination-bar p {
+	float: left;
+	font-size: 16px;
+}
+
+.pagination-bar div {
+	float: right;
+	margin-top: 10px;
+}
+
+.pagination-bar a {
+	display: inline-block;
+	padding: 5px 8px;
+	color: #008dcb;
+	min-width: 20px;
+	font-size: 14px;
+	float: left;
+	border: solid 1px #008dcb;
+	box-sizing: border-box;
+}
+
+.pagination-bar .disabled {
+	background-color: #008dcb;
+	color: #FFF;
+}
+
+/*故障统计*/
+.trouble {
+	width: 100%;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.trouble ul {
+	overflow: hidden;
+}
+
+.trouble ul li {
+	float: left;
+	width: 120px;
+	height: 46px;
+	text-align: center;
+	line-height: 46px;
+	border: solid 1px #0081cc;
+	color: #0081cc;
+	margin-left: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.trouble ul .active {
+	background: #0081cc;
+	color: #fff;
+}
+
+#content .mods {
+	display: none;
+}
+
+/*开机自检*/
+.checking {
+	overflow: hidden;
+	width: 1270px;
+	margin: 10px auto 30px;
+}
+
+.checking ul {
+	overflow: hidden;
+	margin: 0 50px;
+}
+
+.checking ul .checking-left {
+	float: left;
+}
+
+.checking ul .checking-left span {
+	float: left;
+	color: #fff;
+	line-height: 32px;
+}
+
+.checking ul .checking-left p {
+	float: left;
+	background: url(../img/date.png) center right no-repeat #1f4e70;
+	width: 300px;
+	height: 32px;
+	border-radius: 5px;
+	margin-left: 10px;
+	line-height: 32px;
+	text-indent: 10px;
+	color: #9ce4ff;
+}
+
+.checking ul .checking-left i {
+	width: 24px;
+	height: 2px;
+	background: #1f4e70;
+	float: left;
+	margin: 0 10px 0 20px;
+	margin-top: 14px;
+}
+
+.checking ul .checking-right {
+	float: left;
+	margin-left: 50px;
+}
+
+.checking ul .checking-right span {
+	float: left;
+	color: #fff;
+	line-height: 32px;
+}
+
+.checking ul .checking-right select {
+	width: 300px;
+	height: 32px;
+	background: #1f4e70;
+	float: left;
+	margin-left: 10px;
+	color: #fff;
+	outline: none;
+}
+
+.button {
+	width: 260px;
+	margin: 30px auto 0;
+	overflow: hidden;
+}
+
+.search {
+	float: left;
+	background: url(../img/search.png) no-repeat #dc9e32 30px center;
+	width: 120px;
+	height: 36px;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 36px;
+	text-indent: 54px;
+}
+
+.submit {
+	float: left;
+	background: url(../img/submit.png) no-repeat #0081cc 30px center;
+	width: 120px;
+	height: 36px;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 36px;
+	text-indent: 54px;
+	margin-left: 20px;
+}
+
+.production-list table .actives td {
+	color: #dc9e32;
+}
+
+.table-head {
+	padding-right: 17px;
+	background-color: #999;
+	color: #000;
+}
+
+.table-body {
+	width: 100%;
+	height: 300px;
+	overflow-y: scroll;
+}
+
+.table-head table,.table-body table {
+	width: 100%;
+}
+
+.table-body table tr:nth-child(2n+1) {
+	background-color: #f2f2f2;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #355baa;
+	border-radius: 10px;
+	border: 2px solid #355baa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #0a1531;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:active {
+	border: 0;
+	border-radius: 0;
+	background-color: #0a1531
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background-color: #355baa
+}
+
+.list_tab {
+	width: 98%;
+	height: 450px;
+	margin: 4px 1% 0 1%;
+}
+
+.list_tab table {
+	width: 100%;
+	height: 98%;
+}
+
+.list_tab thead tr {
+	text-align: center;
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.list_tab table thead tr th {
+	font-size: 16px;
+	color: #ffc600;
+}
+
+.list_tab table {
+	width: 100%;
+}
+
+.list_tab tbody {
+	display: block;
+	height: 380px;
+	overflow-y: scroll;
+}
+
+.list_tab tbody tr {
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.list_tab table tbody tr td {
+	font-size: 16px;
+	color: #aff1ff;
+}
+
+.list_tab tbody tr:hover td {
+	background: #FFC600;
+	color: #021E39;
+}
+
+.chartBox {
+	width: 25%;
+	height: 100%;
+	float: left;
+}
+
+.chartBox25 {
+	width: 24%;
+	height: 100%;
+	float: left;
+	background: #15344b;
+	margin:0 0.5%;
+	border-radius: 6px;
+}
+.chartBox50 {
+	width: 49%;
+	height: 100%;
+	float: left;
+	background: #15344b;
+	margin:0 0.5%;
+	border-radius: 6px;
+}
+.chartBox100 {
+	width: 99%;
+	height: 100%;
+	float: left;
+	background: #15344b;
+	margin:0 0.5%;
+	border-radius: 6px;
+}

@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/springbootstart
+        username: root
+        password: cape
+        # druid配置项，默认spring-boot不支持，故需要config类来解析
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+mybatis:
+  #默认配置查询的时候对 返回为map 类型的数据，如果数据为空，查询出来的数据就不显示，有时候我们需要这些为空的数据，对其进行判断。
+  configuration:
+    call-setters-on-nulls: true
+    #在控制台输出sql返回数据。
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.springbooteasyui.entity
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

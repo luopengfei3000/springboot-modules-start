@@ -1,0 +1,196 @@
+.form_commonTable th {
+    font-weight: normal;
+}
+
+.form-table-6 {
+    padding-right: 16px;
+}
+
+.form-table-6 th {
+    width: 6%;
+}
+
+.form-table-7 {
+    padding-right: 16px;
+}
+
+.form-table-7 th {
+    width: 7%;
+}
+
+.form-table-8 {
+    padding-right: 16px;
+}
+
+.form-table-8 th {
+    width: 8%;
+}
+
+.form-table-9 {
+    padding-right: 16px;
+}
+
+.form-table-9 th {
+    width: 9%;
+}
+
+.form-table-10 {
+    padding-right: 16px;
+}
+
+.form-table-10 th {
+    width: 10%;
+}
+
+.form-table-11 {
+    padding-right: 16px;
+}
+
+.form-table-11 th {
+    width: 11%;
+}
+
+.form-table-12 {
+    padding-right: 8px;
+}
+
+.form-table-12 th {
+    width: 12%;
+}
+
+.form-table-13 {
+    padding-right: 8px;
+}
+
+.form-table-13 th {
+    width: 13%;
+}
+
+.form-table-14 {
+    padding-right: 8px;
+}
+
+.form-table-14 th {
+    width: 14%;
+}
+
+.form-table-15 {
+    padding-right: 8px;
+}
+
+.form-table-15 th {
+    width: 15%;
+}
+
+.form-toolbar {
+    height: 45px;
+}
+
+.datagrid-sort-icon {
+    position: absolute;
+}
+
+/* 表格双计量单位切换 */
+.biaoqian{
+	width: 136px;
+	height: 24px;
+	background: #fbfbfb;
+	border: 1px solid #cccccc;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	float: right;
+        margin-bottom: -4px;
+}
+.biaoqian a{text-decoration: none;}
+.biaoqian img{ border-style:none; }
+.biaoqian ul,li{list-style: none !important;padding: 0;margin: 0;}
+.biaoqian li{
+	text-align: center;
+	float: left;
+}
+.biaoqian_left{
+	width: 67px;
+	height: 24px;
+	line-height: 22px;
+	display: block;
+	font-size: 12px;
+	color: #6e6e6e;
+	border-top-left-radius: 4px;
+}
+.biaoqian_right{
+	width: 68px;
+	height: 24px;
+	line-height: 22px;
+	display: block;
+	font-size: 12px;
+	color: #6e6e6e;
+	border-top-right-radius: 4px;
+}
+.biaoqian li .biaoqian_left:hover{
+	background: #ff774d;
+	color: white;
+}
+.biaoqian li .biaoqian_right:hover{
+	background: #4db6ff;
+	color: white;
+}
+.on_left{
+	background: #FF774D;
+	color: #FFFFFF;
+}
+.on_right{
+	background: #4db6ff;
+	color: #FFFFFF;
+}
+.on_datagrid_left{
+	background: #FF774D;
+}
+.on_datagrid_right{
+	background: #4db6ff;
+}
+/*向导样式*/
+.navi{
+    padding: 2px 10px;
+}
+.navi img{ border-style:none; }
+.navi ul,li{list-style: none;padding: 0;margin: 0;}
+.navi a{text-decoration: none; }
+.navi li{
+    float: left;
+    text-align: center;
+    font-size: 13px;
+    color: #0092dc;
+    cursor: pointer;
+}
+.navi div{
+    padding-left: 18px;
+    background-image: url(../icons/ls_03.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 29px;
+    line-height: 29px;
+}
+.navi div:hover{
+    padding-left: 28px;
+    background-image: url(../icons/trr_03.png);
+    color: #FF6600;
+    font-weight: bold;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+.navi_current div{
+    padding-left: 28px;
+    background-image: url(../icons/trr_03.png);
+    color: #FF6600;
+    font-weight: bold;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+.navi_link{
+    padding: 7px 10px 0 10px;
+    font-size:16px;
+    color:#FF6600;
+    font-weight: bold;
+}

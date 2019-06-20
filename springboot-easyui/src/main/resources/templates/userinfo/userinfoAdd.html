@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="添加页面">添加页面</title>
+    <!--默认拼接前缀路径,开头请勿再添加斜杠,防止部署运行报错！-->
+    <script th:replace="common/header::static"></script>
+</head>
+<script type="text/javascript">
+
+    $(function () {
+
+    });
+    function saveForm(){
+        if ($('#form').form('validate') == false) {
+            return;
+        }
+        parent.userinfo.save(serializeObject($('#form')),"#insert");
+    }
+    function closeForm() {
+        parent.userinfo.closeDialog("#insert");
+    }
+</script>
+
+<body class="easyui-layout" fit="true">
+<div data-options="region:'center',split:true,border:false">
+    <form id='form' class="form_commonTable">
+        <input type="hidden" name="userId"/>
+        <table>
+            <tr>
+                <th width="15%"><span style="color: red;">*</span>用户姓名:</th>
+                <td width="35%">
+                    <input name="userName" class="easyui-validatebox" data-options="required:true,validType:'maxLength[64]'" />
+                </td>
+                <th width="15"><span style="color: red;">*</span>用户密码:</th>
+                <td width="35%">
+                    <input name="password" class="easyui-validatebox" data-options="required:true,validType:'maxLength[64]'" />
+                </td>
+            </tr>
+            <tr>
+                <th width="15%"><span style="color: red;">*</span>电话号码:</th>
+                <td width="35%">
+                    <input name="phone" class="easyui-validatebox" data-options="required:true,validType:'maxLength[64]'" />
+                </td>
+                <th width="15"></th>
+                <td width="35%">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="toolbar" class="datagrid-toolbar datagrid-toolbar-extend foot-formopera">
+        <table class="tableForm" border="0" cellspacing="1" width='100%'>
+            <tr>
+                <td width="50%" align="right">
+                    <a title="保存" id="saveButton" class="easyui-linkbutton primary-btn" onclick="saveForm();" href="javascript:void(0);">保存</a>
+                    <a title="返回" id="returnButton" class="easyui-linkbutton" onclick="closeForm();" href="javascript:void(0);">返回</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

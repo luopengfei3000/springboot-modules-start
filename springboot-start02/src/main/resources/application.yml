@@ -1,0 +1,26 @@
+#　例如生产和开发的配置文件需要切换，那我们只要定义application-xxx.yml，
+#然后在application.yml里面使用spring.profile.active切换即可！
+spring:
+  profiles:
+    active: dev
+server:
+  #更换端口号
+  #port: 8082
+  #项目路径前加 http://localhost:8082/luopf/hello
+  servlet:
+    context-path: /luopf
+#定义变量
+salary: 10010
+name: luopf
+twoname:
+  first_name: luo
+  last_name: pf
+multiname:
+  first_name: luo
+  last_name: pf
+  full_name: "${twoname.first_name}${twoname.last_name}"
+#person类
+person:
+  name: luopf
+  age: 20
+  sex: GG
