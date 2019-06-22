@@ -43,7 +43,7 @@
             .run(args);
     ```
     
-#### 日志的使用
+### 日志的使用
     
 Logback：一款优秀的日志框架
     
@@ -51,7 +51,7 @@ SpringBoot的Starter默认日志框架：Logback，默认级别：INFO
     
 配置文件：官方推荐名称logback-spring.xml
     
-访问localhost:8080/log
+访问localhost:8080/test/log
     
 会在项目目录生成一个新目录app_log
     
