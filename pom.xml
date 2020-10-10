@@ -28,6 +28,7 @@
         <module>springboot-dubbo-consumer</module>
         <module>springboot-dubbo-provider</module>
         <module>springboot-webservice-consumer</module>
+        <module>springboot-swagger</module>
     </modules>
 
     <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
